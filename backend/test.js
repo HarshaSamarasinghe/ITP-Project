@@ -1,1 +1,1 @@
-//adgahaja
+console.log("Hello world");
