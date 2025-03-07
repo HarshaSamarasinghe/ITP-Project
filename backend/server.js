@@ -3,6 +3,7 @@ import cors from "cors";
 import { log } from "console";
 import connectDB from "./Config/db.js";
 import "dotenv/config.js";
+import rentingItemsRoute from "./Routes/rentingItemsRoute.js";
 
 // App Config
 const server = express();
@@ -13,13 +14,11 @@ server.use(express.json());
 server.use(cors());
 
 // All Routes
-//server.use("/api/v1", rootRouter);
-server.use("/images", express.static("./Uploads"));
+//server.use("/images", express.static("./Uploads"));
+server.use("/api/rentingItems", rentingItemsRoute);
 
 // DB Connection
 connectDB();
-
-
 
 server.get("/", (c, s) => {
   s.send("API WORKING");
