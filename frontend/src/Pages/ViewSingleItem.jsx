@@ -1,5 +1,4 @@
-import { Box, Button, Container, Heading, Image, VStack, Text, useColorModeValue, useToast, HStack, Input, IconButton } from '@chakra-ui/react';
-import { AddIcon } from '@chakra-ui/icons';
+import { Box, Button, Container, Heading, Image, VStack, Text, useToast, HStack } from '@chakra-ui/react';
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useProductStore } from '../store/rentingItems';
@@ -11,17 +10,7 @@ const ViewSingleItem = () => {
         state.products.find((prod) => prod._id === id)
     ); 
 
-    const toast = useToast();
-    
-    
-    const proceedToPay = () => {
-        toast({
-            title: 'Order Placed',
-            description: ` ${product.eqName} order has been placed successfully.`,
-            status: 'success',
-            isClosable: true,
-        });
-    };
+   
 
    
 
@@ -57,7 +46,7 @@ const ViewSingleItem = () => {
 
                    <HStack spacing={40}>
                         <VStack>
-                            <Button as={Link} to={`/checkout/${product._id}`} leftIcon={<AddIcon />} onClick={proceedToPay} colorScheme='green' size='lg' >
+                            <Button as={Link} to={`/checkout/${product._id}`}  colorScheme='green' size='lg' >
                         Proceed to Pay
                     </Button>
                         </VStack>
@@ -72,6 +61,7 @@ const ViewSingleItem = () => {
                 </VStack>
             </HStack>
         </Container>
+       
     );
 };
 

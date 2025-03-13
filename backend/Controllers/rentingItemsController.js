@@ -14,8 +14,8 @@ import Product from "../Model/rentingItemsModel.js";
 export const createProduct = async (req, res) => {
 	const product = req.body; // user will send this data
 
-	if (!product.eqName || !product.eqDescription ||!product.eqPrice || !product.eqImage || !product.eqAvailability || !product.eqDuration) {
-		return res.status(400).json({ success: false, message: "Please provide all fields" });
+	if (!product.eqName || !product.eqDescription ||!product.eqPrice || !product.eqImage || !product.eqAvailability) {
+		return res.status(400).json({ success: false, message: "back Please provide all fields" });
 	}
 
 	const newProduct = new Product(product);
