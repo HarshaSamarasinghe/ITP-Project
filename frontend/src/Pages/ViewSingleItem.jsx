@@ -10,9 +10,7 @@ const ViewSingleItem = () => {
         state.products.find((prod) => prod._id === id)
     ); 
 
-   
-
-   
+    const isAvailable = product.eqAvailability === 'In Stock';
 
     return (
         <Container maxW='container.xl' py={12}>
@@ -31,24 +29,22 @@ const ViewSingleItem = () => {
                    <Text fontWeight={'bold'}>
                         Availability : <Text as='span' color={product.eqAvailability === 'In Stock' ? 'green.500' : 'red.500'}>{product.eqAvailability}</Text>
                     </Text>
-                    
-                    <Text>Duration: {product.eqDuration}</Text>
+                
                     <Text fontWeight={'light'}>{product.eqDescription}</Text>
-                   
-
-                    
-
-                    {/* <HStack>
-                        <IconButton icon={<MinusIcon />} onClick={handleDecrease} />
-                        <Text>{quantity}</Text>
-                        <IconButton icon={<AddIcon />} onClick={handleIncrease} />
-                    </HStack> */}
+                
 
                    <HStack spacing={40}>
                         <VStack>
-                            <Button as={Link} to={`/checkout/${product._id}`}  colorScheme='green' size='lg' >
-                        Proceed to Pay
-                    </Button>
+                       
+                    <Button 
+                                as={Link} 
+                                to={isAvailable ? `/checkout/${product._id}` : '#'} 
+                                colorScheme='green' 
+                                size='lg' 
+                                isDisabled={!isAvailable}
+                            >
+                                Proceed to Pay
+                            </Button>
                         </VStack>
 
                         <VStack spacing={4} w='full'>

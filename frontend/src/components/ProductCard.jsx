@@ -2,6 +2,7 @@ import {  DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	Button,
+	Divider,
 	Heading,
 	HStack,
 	IconButton,
@@ -85,25 +86,27 @@ const ProductCard = ({ product }) => {
 
 	return (
 		
+		
 		<Box
 			shadow='lg'
 			rounded='lg'
 			overflow='hidden'
 			transition='all 0.3s'
-			_hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+			_hover={{ transform: "translateY(-10px)", shadow: "xl" }}
 			bg={bg}
-			w={340}
+			w={280}
 		>
 			<Link to={`/viewSingleItem/${product._id}`}>
 			<Image src={product.eqImage} alt={product.eqName} h={48} w='full' objectFit={'fill'} />
 			</Link>
+			<Divider borderWidth="2px" borderColor="gray.500" />
 			<Box p={4}>
 				<Heading as='h3' size='md' mb={2}>
 					{product.eqName}
 				</Heading>
 
 				<Text fontWeight='bold' fontSize='xl' color={textColor} mb={4}>
-					${product.eqPrice} / day
+					Rs.{product.eqPrice} / day
 				</Text>
 
 				<HStack spacing={10} justify='center' mt={4}>
@@ -162,12 +165,7 @@ const ProductCard = ({ product }) => {
 								<option value="In Stock">In Stock</option>
 								<option value="Out of Stock">Out of Stock</option>
 							</Select>
-							<Input
-								placeholder='Duration'
-								name='eqDuration'
-								value={updatedProduct.eqDuration}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, eqDuration: e.target.value })}
-							/>
+							
 							
 						</VStack>
 					</ModalBody>
@@ -188,6 +186,7 @@ const ProductCard = ({ product }) => {
 			</Modal>
 			
 		</Box>
+		
 		
 	);
 };

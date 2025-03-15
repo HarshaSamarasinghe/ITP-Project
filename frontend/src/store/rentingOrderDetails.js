@@ -15,6 +15,31 @@ export const useOrderDetails = create((set) => ({
         },
         body: JSON.stringify(newOrderDetails),
       });
+      const data = await res.json();
+      set((state) => ({ orders: [...state.orders, data.data] }));
+      return { success: true, message: "Order created successfully" };
 
-  }
+  },
+
+  
+  fetchOrders: async () => {  // Renamed to match component usage
+    try {
+      const res = await fetch("/api/RentingOrderDetails");
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch orders.");
+      }
+
+      const data = await res.json();
+
+      if (!data?.data) {
+        throw new Error("Invalid response from server.");
+      }
+
+      set({ orders: data.data });
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      set({ orders: [] }); // Ensures state does not break
+    }
+  },
 }));

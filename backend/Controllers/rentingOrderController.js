@@ -21,3 +21,13 @@ export const createRentingOrder = async (req, res) => {
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
+
+export const getOrders = async (req, res) => {
+	try {
+		const orders = await rentCusOrderDetails.find({}).populate("eqID");
+		res.status(200).json({ success: true, data: orders });
+	} catch (error) {
+		console.log("error in fetching products:", error.message);
+		res.status(500).json({ success: false, message: "Server Error" });
+	}
+};

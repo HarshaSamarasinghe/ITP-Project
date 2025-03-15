@@ -7,8 +7,8 @@ const RentingOrderDetailsModel = new mongoose.Schema(
 			required: true,
 		},
 		eqID: {
-			type: String,
-			
+			type: mongoose.Schema.Types.ObjectId, 
+			ref: "RentingItems"
 		},
 		cusEmail: {
 			type: String,

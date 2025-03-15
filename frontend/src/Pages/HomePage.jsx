@@ -1,4 +1,4 @@
-import { Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Button, Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "../store/rentingItems";
@@ -29,7 +29,7 @@ const HomePage = () => {
 					columns={{
 						base: 1,
 						md: 2,
-						lg: 3,
+						lg: 4,
 					}}
 					spacing={10}
 					w={"full"}
