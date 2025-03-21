@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import CreateRentingItems from "./Pages/AdminSide/CreateRentingItems";
+import CreateRentingItems from "./Pages/AdminSide/CreateRentingItems/CreateRentingItems.jsx";
 import HomePage from "./Pages/UserSide/HomePage";
 import ViewSingleItem from "./Pages/UserSide/ViewSingleItem";
 import ProductCheckout from "./Pages/UserSide/ProductCheckout";
