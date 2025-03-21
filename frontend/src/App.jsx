@@ -1,43 +1,40 @@
-import { Box, useColorModeValue, IconButton,} from "@chakra-ui/react";
-import { Route, Routes, } from "react-router-dom";
-import { FaBars, FaTimes,} from "react-icons/fa";
-import { useState } from "react";
-import CreatePage from "./Pages/CreatePage";
-import HomePage from "./Pages/HomePage";
-import ViewSingleItem from "./Pages/ViewSingleItem";
-import ProductCheckout from "./components/ProductCheckout";
-import RentedItems from "./Pages/RentedItems";
-import Footer from "./components/Footer";
-import Sidebar from "./components/SideBar";
-
+import { Route, Routes } from "react-router-dom";
+import CreateRentingItems from "./Pages/AdminSide/CreateRentingItems";
+import HomePage from "./Pages/UserSide/HomePage";
+import ViewSingleItem from "./Pages/UserSide/ViewSingleItem";
+import ProductCheckout from "./Pages/UserSide/ProductCheckout";
+import RentedItems from "./Pages/AdminSide/adRentedItems.jsx";
+import AdminViewRentingStore from "./Pages/AdminSide/AdminViewRentingStore.jsx";
+import './App.css'
+import AdminSide from "./Pages/AdminSide/AdminSide.jsx";
+import UserSide from "./Pages/UserSide/UserSide.jsx";
+import RentingStore from "./Pages/UserSide/RentingStore.jsx";
+import ViewMyOrders from "./Pages/UserSide/ViewMyOrders.jsx";
+import AdminViewRentingOrders from "./Pages/AdminSide/adRentedItems.jsx";
 
 function App() {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleSidebar = () => setIsOpen(!isOpen);
+   
 
     return (
-        <Box minH={"100vh"} bg={useColorModeValue("gray.100", "gray.700")}> 
-            <IconButton
-                icon={isOpen ? <FaTimes /> : <FaBars />}
-                onClick={toggleSidebar}
-                position="fixed"
-                top={4}
-                left={4}
-                zIndex={10}
-                aria-label="Toggle Sidebar"
-            />
-            <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-            <Box ml={isOpen ? "200px" : "0"} transition="margin 0.3s">
-                <Routes>
-                    <Route path='/' element={<HomePage />} />
-                    <Route path='/create' element={<CreatePage />} />
-                    <Route path='/viewSingleItem/:id' element={<ViewSingleItem />} />
-                    <Route path='/checkout/:id' element={<ProductCheckout />} />
-                    <Route path='/rentedItems' element={<RentedItems />} />
+        
+        <>
+             <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/createRentingItem" element={<CreateRentingItems />} />
+                    <Route path="/adRentingStore" element = {<AdminViewRentingStore/>}/>
+                    <Route path="/viewSingleItem/:id" element={<ViewSingleItem />} />
+                    <Route path="/checkout/:id" element={<ProductCheckout />} />
+                    <Route path="/rentedItems" element={<RentedItems />} />
+                    <Route path="/adminSide" element={<AdminSide />} />
+                    <Route path="/userSide" element={<UserSide />} />
+                    <Route path="/rentingStore" element={<RentingStore />} />
+                    <Route path="/viewMyOrders" element={<ViewMyOrders />} />
+                    
+
+                    <Route path="/rentingOrderList" element= {<AdminViewRentingOrders />}/>
+                    
                 </Routes>
-            </Box>
-            <Footer />
-        </Box>
+        </>
     );
 }
 

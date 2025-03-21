@@ -7,7 +7,7 @@ export const useProductStore = create((set) => ({
 		if (!newProduct.eqName || !newProduct.eqDescription || !newProduct.eqPrice || !newProduct.eqImage || !newProduct.eqAvailability ) {
 			return { success: false, message: "Please fill in the all fields." };
 		}
-		const res = await fetch("/api/rentingItems", {
+		const res = await fetch("http://localhost:4000/api/rentingItems", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -19,12 +19,12 @@ export const useProductStore = create((set) => ({
 		return { success: true, message: "Equipment created successfully" };
 	},
 	fetchProducts: async () => {
-		const res = await fetch("/api/rentingItems");
+		const res = await fetch("http://localhost:4000/api/rentingItems");
 		const data = await res.json();
 		set({ products: data.data });
 	},
 	deleteProduct: async (pid) => {
-		const res = await fetch(`/api/rentingItems/${pid}`, {
+		const res = await fetch(`http://localhost:4000/api/rentingItems/${pid}`, {
 			method: "DELETE",
 		});
 		const data = await res.json();
@@ -35,7 +35,7 @@ export const useProductStore = create((set) => ({
 		return { success: true, message: data.message };
 	},
 	updateProduct: async (pid, updatedProduct) => {
-		const res = await fetch(`/api/rentingItems/${pid}`, {
+		const res = await fetch(`http://localhost:4000/api/rentingItems/${pid}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

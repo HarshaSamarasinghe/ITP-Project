@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const RentingOrderDetailsModel = new mongoose.Schema(
 	{
+		// cusID: {
+		// 	//type: mongoose.Schema.Types.ObjectId, 
+		// 	//ref: "RentingItems"
+		// 	default: ""
+		// },
 		cusName: {
 			type: String,
 			required: true,
@@ -10,6 +15,7 @@ const RentingOrderDetailsModel = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId, 
 			ref: "RentingItems"
 		},
+		
 		cusEmail: {
 			type: String,
 			required: true,
@@ -46,6 +52,18 @@ const RentingOrderDetailsModel = new mongoose.Schema(
 		rentTo: {
 			type: Date,
 			required: true,
+		},
+		returnStatus: {
+			type: String,
+			default:"Not Returned"
+		},
+		fineValue: {
+			type: Number,
+			default: 0
+		},
+		returnDate: {
+			type: Date,
+			default: ""
 		},
 		
 	},

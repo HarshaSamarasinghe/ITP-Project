@@ -31,3 +31,20 @@ export const getOrders = async (req, res) => {
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
+
+export const updateReturnRequest = async (req, res) => {
+	const { id } = req.params;
+
+	const order = req.body;
+
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(404).json({ success: false, message: "Invalid Order Id" });
+	}
+
+	try {
+		const updatedReturnRequest = await rentCusOrderDetails.findByIdAndUpdate(id, order, { new: true });
+		res.status(200).json({ success: true, data: updatedReturnRequest });
+	} catch (error) {
+		res.status(500).json({ success: false, message: "Server Error" });
+	}
+};

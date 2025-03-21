@@ -15,7 +15,7 @@ function Sidebar({ isOpen, toggleSidebar }) {
                     initial={{ x: -250 }}
                     animate={{ x: 0 }}
                     exit={{ x: -250 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4 }}
                     style={{ position: "fixed",
                          top: 0, left: 0, 
                          width: "200px", 
@@ -31,7 +31,8 @@ function Sidebar({ isOpen, toggleSidebar }) {
                         <Link to="/" onClick={toggleSidebar}><Flex align="center" p={3}><FaHome /><Text ml={3}>Home</Text></Flex></Link>
                         <Link to="/create" onClick={toggleSidebar}><Flex align="center" p={3}><FaPlus /><Text ml={3}>Create</Text></Flex></Link>
                         <Link to="/rentedItems" onClick={toggleSidebar}><Flex align="center" p={3}><FaList /><Text ml={3}>Rented Items</Text></Flex></Link>
-                        <Link to="#" onClick={toggleSidebar}><Flex align="center" p={3}><FaShoppingCart /><Text ml={3}>Checkout</Text></Flex></Link>
+                        
+                        <Link to="/rentingStore" onClick={toggleSidebar}><Flex align="center" p={3}><FaShoppingCart /><Text ml={3}>Equipment Store</Text></Flex></Link>
                         <Flex><Button onClick={toggleColorMode}>
 						{colorMode === "light" ? <IoMoon /> : <LuSun size='20' />} </Button></Flex>
 					
