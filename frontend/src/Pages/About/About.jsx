@@ -6,23 +6,13 @@ function About() {
       <div className="aboutHero">
         <h1>About Sports Zaga</h1>
         <p className="aboutHeroSubtitle">
-          We are a one-stop destination for premium sports equipment — offering
+          We are a one-stop destination for premium sports equipment offering
           sales, rentals, repairs, and full customization to help athletes
           perform at their best.
         </p>
       </div>
 
       <hr className="aboutDivider" />
-
-      <div className="aboutSection">
-        <h2>Our Story</h2>
-        <p>
-          Founded with a passion for sport, Sports Zaga was built to bridge the
-          gap between athletes and the gear they need. Whether you're a weekend
-          warrior or a competitive player, we believe everyone deserves
-          access to high-quality, well-maintained equipment without compromise.
-        </p>
-      </div>
 
       <div className="aboutSection">
         <h2>What We Offer</h2>
@@ -88,7 +78,7 @@ function About() {
           <h2>Get in Touch</h2>
           <p>Have questions or need support? We're here to help.</p>
         </div>
-        <a href="mailto:support@sportszaga.com">
+        <a href="#">
           <button className="aboutContactBtn">Contact Us</button>
         </a>
       </div>
