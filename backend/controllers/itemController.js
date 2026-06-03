@@ -1,7 +1,22 @@
 import itemModel from "../model/itemModel.js";
 import fs from "node:fs";
 import PDFDocument from "pdfkit";
-// create
+
+// Helper function to safely delete files without crashing the server
+const safelyDeleteFile = (filePath) => {
+  try {
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      console.log(`Successfully deleted old file: ${filePath}`);
+    } else {
+      console.warn(`File warning: Attempted to delete ${filePath}, but file does not exist.`);
+    }
+  } catch (error) {
+    console.error(`Error deleting file at ${filePath}:`, error.message);
+  }
+};
+
+// create ---------------------------------------------------------------------------------------
 const createItem = async (req, res) => {
   let imageFilename = req.file ? req.file.filename : null;
 
@@ -20,6 +35,9 @@ const createItem = async (req, res) => {
 
     // Validate required fields
     if (!name || !imageFilename || !category || !brand || !basePrice) {
+      // If validation fails, clean up the newly uploaded file to avoid orphaned images
+      if (imageFilename) safelyDeleteFile(`./Uploads/${imageFilename}`);
+      
       return res
         .status(400)
         .json({ success: false, message: "Missing required fields" });
@@ -50,6 +68,8 @@ const createItem = async (req, res) => {
     res.json({ success: true, message: "Item added successfully", item });
   } catch (error) {
     console.error(error);
+    // Cleanup newly uploaded file if database save fails
+    if (imageFilename) safelyDeleteFile(`./Uploads/${imageFilename}`);
     res.status(500).json({ success: false, message: "Error creating item" });
   }
 };
@@ -57,7 +77,7 @@ const createItem = async (req, res) => {
 // Update ---------------------------------------------------------------------------------------
 const updateItem = async (req, res) => {
   try {
-    const { id } = req.params; // Get item ID from URL parameters
+    const { id } = req.params; 
     const {
       name,
       category,
@@ -68,47 +88,44 @@ const updateItem = async (req, res) => {
       size,
       material,
       durability,
-    } = req.body; // Get updated data from request body
+    } = req.body; 
 
-    // Check if a new image file is provided
     let newImage = req.file ? req.file.filename : null;
 
     // Find the item by ID
     const item = await itemModel.findById(id);
     if (!item) {
+      if (newImage) safelyDeleteFile(`./Uploads/${newImage}`);
       return res
         .status(404)
         .json({ success: false, message: "Item not found" });
     }
 
-    // If a new image is provided and the item already has an image, delete the old one
+    // FIX: Safely delete the old image if a new one is provided
     if (newImage && item.image) {
-      fs.unlinkSync(`./Uploads/${item.image}`); // Remove the previous image file
+      safelyDeleteFile(`./Uploads/${item.image}`); 
     }
 
     // Function to safely parse a value or return the existing value
     const parseSpecification = (value, existingValue) => {
       if (value && Array.isArray(value)) {
-        return value; // If it's already an array, return as is
+        return value; 
       }
       try {
-        return value ? JSON.parse(value) : existingValue; // Otherwise, try to parse the value
+        return value ? JSON.parse(value) : existingValue; 
       } catch (error) {
         console.error("Error parsing specification:", error);
-        return existingValue; // If parsing fails, return the existing value
+        return existingValue; 
       }
     };
 
     // Only update specifications if values are provided
     const specifications = {
-      color: parseSpecification(color, item.specifications.color),
-      weight: parseSpecification(weight, item.specifications.weight),
-      size: parseSpecification(size, item.specifications.size),
-      material: parseSpecification(material, item.specifications.material),
-      durability: parseSpecification(
-        durability,
-        item.specifications.durability
-      ),
+      color: parseSpecification(color, item.specifications?.color || []),
+      weight: parseSpecification(weight, item.specifications?.weight || []),
+      size: parseSpecification(size, item.specifications?.size || []),
+      material: parseSpecification(material, item.specifications?.material || []),
+      durability: parseSpecification(durability, item.specifications?.durability || []),
     };
 
     // Update the item in the database
@@ -116,16 +133,15 @@ const updateItem = async (req, res) => {
       id,
       {
         name,
-        image: newImage || item.image, // Use the new image or keep the old image if no new one is provided
+        image: newImage || item.image, 
         category,
         brand,
         basePrice,
-        specifications, // Update specifications with values and prices
+        specifications, 
       },
-      { new: true } // Return the updated item
+      { new: true } 
     );
 
-    // Respond with the updated item
     res.json({
       success: true,
       message: "Item updated successfully",
@@ -133,6 +149,8 @@ const updateItem = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    // If anything fails and a new image was uploaded, remove it to keep storage clean
+    if (req.file ? req.file.filename : null) safelyDeleteFile(`./Uploads/${req.file.filename}`);
     res.status(500).json({ success: false, message: "Error updating item" });
   }
 };
@@ -141,29 +159,27 @@ const updateItem = async (req, res) => {
 const deleteItem = async (req, res) => {
   try {
     const { id } = req.params;
-    const item = await itemModel.findById(id);
-
-    fs.unlink(`./Uploads/${item.image}`, (error) => {
-      if (error) {
-        throw error;
-      }
-    });
-
-    // Validate ID
+    
     if (!id) {
       return res
         .status(400)
         .json({ success: false, message: "Item ID is required" });
     }
 
-    // Find and delete item
-    const deletedItem = await itemModel.findByIdAndDelete(id);
-
-    if (!deletedItem) {
+    const item = await itemModel.findById(id);
+    if (!item) {
       return res
         .status(404)
         .json({ success: false, message: "Item not found" });
     }
+
+    // FIX: Remove old image safely before removing database records
+    if (item.image) {
+      safelyDeleteFile(`./Uploads/${item.image}`);
+    }
+
+    // Find and delete item
+    await itemModel.findByIdAndDelete(id);
 
     res.json({ success: true, message: "Item deleted successfully" });
   } catch (error) {
@@ -172,20 +188,17 @@ const deleteItem = async (req, res) => {
   }
 };
 
-// read
+// read ---------------------------------------------------------------------------------------
 const listItem = async (req, res) => {
   try {
-    // Fetch all items from the database
     const items = await itemModel.find();
 
-    // Check if there are any items
     if (items.length === 0) {
       return res
         .status(404)
         .json({ success: false, message: "No items found" });
     }
 
-    // Return the list of items
     res.json({
       success: true,
       message: "Items retrieved successfully",
@@ -197,19 +210,17 @@ const listItem = async (req, res) => {
   }
 };
 
-// get item by id
+// get item by id -------------------------------------------------------------------------------
 const getItem = async (req, res) => {
   try {
-    const { id } = req.params; // Get item ID from URL parameters
+    const { id } = req.params; 
 
-    // Validate ID
     if (!id) {
       return res
         .status(400)
         .json({ success: false, message: "Item ID is required" });
     }
 
-    // Find the item by ID
     const item = await itemModel.findById(id);
 
     if (!item) {
@@ -218,7 +229,6 @@ const getItem = async (req, res) => {
         .json({ success: false, message: "Item not found" });
     }
 
-    // Return the found item
     res.json({
       success: true,
       message: "Item retrieved successfully",
@@ -230,6 +240,7 @@ const getItem = async (req, res) => {
   }
 };
 
+// Report Generation -----------------------------------------------------------------------------
 const generateReport = async (req, res) => {
   console.log("Generating item report...");
 
@@ -261,14 +272,13 @@ const generateReport = async (req, res) => {
       doc.text(`Base Price: LKR ${item.basePrice}`);
       doc.moveDown(0.5);
 
-      // Specifications
-      const spec = item.specifications;
+      const spec = item.specifications || {};
 
       const printSpec = (label, values) => {
-        if (values?.length > 0) {
+        if (values && values.length > 0) {
           doc.text(`${label}:`);
           values.forEach((v) => {
-            doc.text(` - ${v.value} (LKR ${v.price})`, { indent: 20 });
+            doc.text(` - ${v.value || 'N/A'} (LKR ${v.price || 0})`, { indent: 20 });
           });
           doc.moveDown(0.3);
         }

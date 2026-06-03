@@ -107,11 +107,15 @@ const ViewSingleItem = () => {
             </div>
 
             {isAvailable ? (
-              <Link to={`/checkout/${product._id}`} className="rentNowBtn">
+              <Link 
+                to={`/checkout/${product._id}`} 
+                className="rentNowBtn" 
+                style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+              >
                 Rent Now
               </Link>
             ) : (
-              <button className="rentNowBtn" disabled style={{ opacity: 0.5, cursor: "not-allowed" }}>
+              <button className="rentNowBtn" disabled style={{ opacity: 0.5, cursor: "not-allowed", display: "flex", justifyContent: "center", alignItems: "center"}}>
                 Out of Stock
               </button>
             )}
