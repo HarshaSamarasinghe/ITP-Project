@@ -1,107 +1,370 @@
-/* Container */
-.orders-container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-  font-family: "Arial", sans-serif;
+/* ── Page wrapper ── */
+.ordersPageWrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Title */
-.orders-title {
+/* ── Main content area ── */
+.myOrders {
+  margin-left: 280px;
+  padding: 100px 40px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Loading / error states ── */
+.ordersLoadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f5f5f7;
+}
+.ordersLoadingText {
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: 400;
+}
+.ordersErrorText {
+  font-size: 1.1rem;
+  color: #e53935;
+  font-weight: 400;
+}
+
+/* ── Header ── */
+.ordersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.ordersTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 4px;
+}
+.ordersSubtitle {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+/* ── No orders card ── */
+.noOrdersCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #2222220f;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  gap: 16px;
+}
+.noOrdersIcon {
+  font-size: 3.5rem;
+  color: #ccc;
+}
+.noOrdersCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+.noOrdersCard p {
+  font-size: 0.95rem;
+  color: #777;
+  margin: 0 0 8px;
+}
+.shopNowBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background-color: #111;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.shopNowBtn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
 }
 
-/* Order Card */
-.order-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: transform 0.2s ease-in-out;
+/* ── Orders list & card ── */
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.orderCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #2222220f;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.orderCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
 }
 
-.order-card:hover {
-  transform: scale(1.02);
+/* ── Order card header ── */
+.orderCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2222220f;
+  padding-bottom: 18px;
 }
-
-/* Order Info */
-.order-info p {
-  margin: 5px 0;
-  font-size: 14px;
+.orderMeta {
+  display: flex;
+  gap: 40px;
 }
-
-.order-info strong {
+.orderIdGroup, .orderDateGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.orderIdLabel, .orderDateLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.orderIdValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222;
+  font-family: ui-monospace, SFMono-Regular, SF Pro Text, monospace;
+}
+.orderDateValue {
+  font-size: 0.95rem;
+  font-weight: 500;
   color: #333;
 }
 
-/* Tracking Status */
-.tracking {
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 6px;
+/* ── Badges ── */
+.orderBadges {
+  display: flex;
+  gap: 10px;
+}
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.statusBadge i {
+  font-size: 0.95rem;
 }
 
-.tracking.pending {
-  background-color: #f39c12;
-  color: white;
+/* Payment Badges */
+.paymentBadge.paid {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+.paymentBadge.pending {
+  background-color: #fff8e1;
+  color: #f57f17;
 }
 
-.tracking.shipped {
-  background-color: #3498db;
-  color: white;
+/* Tracking Badges */
+.trackingBadge.pending {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+.trackingBadge.shipped {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+.trackingBadge.delivered {
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
-.tracking.delivered {
-  background-color: #2ecc71;
-  color: white;
+/* ── Card body ── */
+.orderCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Customization Details */
-.customization-info {
-  margin-top: 10px;
-  padding: 10px;
-  background: #f7f7f7;
+/* ── Summary bar ── */
+.orderSummarySection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #22222207;
+}
+.priceDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.priceLabel {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+}
+.priceValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* ── Cancel Order Button ── */
+.cancelOrderBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #fff;
+  border: 1px solid #ffcdd2;
+  color: #c62828;
+  padding: 8px 16px;
   border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.cancelOrderBtn i {
+  font-size: 1rem;
+}
+.cancelOrderBtn:hover {
+  background-color: #c62828;
+  color: #fff;
+  border-color: #c62828;
+  transform: translateY(-1px);
 }
 
-.customization-info h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
+/* ── Customization specs box ── */
+.customizationDetailsBox {
+  background-color: #fafafa;
+  border: 1px dashed #2222221f;
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+.customizationTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.customizationTitle i {
+  font-size: 1.05rem;
+  color: #555;
+}
+.customizationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.customizationGridItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.customLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.customValue {
+  font-size: 0.88rem;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.colorIndicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #2222221a;
+}
+.customValue.price {
+  color: #111;
+  font-weight: 600;
 }
 
-.no-customization {
+/* ── Standard details fallback ── */
+.noCustomizationBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
   color: #888;
   font-style: italic;
-  margin-top: 10px;
+  background-color: #fafafa;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid #22222207;
+}
+.noCustomizationBox i {
+  font-size: 1rem;
+  color: #999;
 }
 
-/* Delete Button */
-.delete-btn {
-  background-color: black;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s ease-in-out;
-}
-
-.delete-btn:hover {
-  background-color: #333;
-}
-
-/* Loading and Error States */
-.loading,
-.error,
-.no-orders {
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 20px;
-  color: #555;
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .myOrders {
+    margin-left: 0;
+    padding: 80px 20px 40px;
+  }
+  .orderCard {
+    padding: 20px;
+  }
+  .orderCardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .orderMeta {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .orderSummarySection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .cancelOrderBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .customizationGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

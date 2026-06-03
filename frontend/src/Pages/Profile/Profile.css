@@ -1,47 +1,224 @@
-.myProfile {
-  padding: 40px;
+/* ── Page wrapper ── */
+.profilePageWrapper {
+  display: flex;
+  width: 100%;
   min-height: 100vh;
+  background-color: #f5f5f7;
 }
 
-.myProfileContainer {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* ── Main content area ── */
+.myProfile {
+  margin-left: 280px;
+  padding: 100px 40px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.profileInfoContainer {
-  width: 400px;
-  text-align: center;
+/* ── Loading / error states ── */
+.profileLoadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+.profileLoadingText {
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: 400;
+}
+.profileErrorText {
+  font-size: 1.1rem;
+  color: #e53935;
+  font-weight: 400;
 }
 
-.profileName {
-  font-size: 24px;
+/* ── Profile card ── */
+.profileCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #2222220f;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  padding: 36px 40px;
+}
+
+/* ── Avatar ── */
+.profileAvatarRing {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #222 0%, #555 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.profileAvatar {
+  font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  color: #fff;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+/* ── Card body ── */
+.profileCardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.profileName {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 4px;
+}
+.profileRole {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0 0 20px;
+}
+
+/* ── Divider ── */
+.profileDivider {
+  height: 1px;
+  background: #2222220f;
+  margin-bottom: 20px;
+}
+
+/* ── Info grid ── */
+.profileInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
+}
+.profileInfoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.profileInfoIcon {
+  font-size: 1.25rem;
+  color: #444;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.profileInfoItem div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.profileInfoLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.profileInfoValue {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 400;
+}
+
+/* ── Action buttons ── */
+.profileActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+.profileActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 22px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.profileActionBtn i {
+  font-size: 1.1rem;
+}
+.profileActionBtn:hover {
+  transform: translateY(-2px);
+}
+.profileActionBtn.primary {
+  background-color: #111;
+  color: #fff;
+}
+.profileActionBtn.primary:hover {
+  background-color: #333;
+}
+.profileActionBtn.secondary {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #2222222a;
+}
+.profileActionBtn.secondary:hover {
+  background-color: #f0f0f0;
+}
+
+/* ── Stats row ── */
+.profileStatsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.profileStatCard {
+  background: #ffffff;
+  border: 1px solid #2222220f;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.profileStatCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.profileStatIcon {
+  font-size: 1.8rem;
   color: #333;
 }
-
-.profileEmail {
-  font-size: 16px;
-  color: #666;
+.profileStatLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
 }
 
-.updateProfileNavigate {
-  margin-top: 30px;
-  text-align: center;
-}
-
-/* Optional: If you want to style buttons inside updateProfileNavigate later */
-.updateProfileNavigate a {
-  text-decoration: none;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.updateProfileNavigate a:hover {
-  background-color: #0056b3;
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .myProfile {
+    margin-left: 0;
+    padding: 80px 20px 40px;
+  }
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profileInfoGrid {
+    grid-template-columns: 1fr;
+  }
+  .profileActions {
+    justify-content: center;
+  }
+  .profileStatsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

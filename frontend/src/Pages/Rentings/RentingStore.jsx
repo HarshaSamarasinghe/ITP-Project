@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "../../Store/rentingItems";
 import ProductCard from "../../../Components/RentingProductCard/ProductCard";
-import Navbar from "../../../Components/Navbar/Navbar";
 
 const RentingStore = () => {
   const { fetchProducts, products } = useProductStore();
@@ -19,8 +18,6 @@ const RentingStore = () => {
 
   return (
     <div>
-      <Navbar />
-
       <div className="headings">
         <h3 className="heading01"> Renting Store</h3>
         <hr className="horizontal-line" />

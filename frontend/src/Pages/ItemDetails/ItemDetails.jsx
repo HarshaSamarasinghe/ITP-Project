@@ -5,7 +5,6 @@ import axios from "axios";
 import RatingsAndReviews from "../../../Components/RatingsAndReviews/RatingsAndReviews";
 import ReviewBox from "../../../Components/Review/ReviewBox";
 import MyReviews from "../../../Components/MyReviews/MyReviews";
-import Navbar from "../../../Components/Navbar/Navbar";
 
 const ItemDetails = () => {
   const url = "http://localhost:4000";
@@ -147,8 +146,6 @@ const ItemDetails = () => {
 
   return (
     <div>
-      {" "}
-      <Navbar />
       <div className="itemDetailsWrapper">
         <div className="itemDetailsContainer">
           <section className="leftItemDetails">

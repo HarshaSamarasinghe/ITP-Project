@@ -1,186 +1,582 @@
-.orders-container {
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.orders-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.no-orders {
-  font-size: 18px;
-  color: #888;
-}
-
-/* Loading and Error */
-.loading,
-.error {
-  font-size: 18px;
-  margin: 50px;
-  text-align: center;
-}
-
-/* Order Card */
-.order-card {
+/* ── Page wrapper ── */
+.rentingOrdersPageWrapper {
   display: flex;
-  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ── Main content area ── */
+.myRentingOrders {
+  margin-left: 280px;
+  padding: 100px 40px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Loading / error states ── */
+.rentingOrdersLoadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f5f5f7;
+}
+.rentingOrdersLoadingText {
+  font-size: 1.1rem;
+  color: #888;
+  font-weight: 400;
+}
+.rentingOrdersErrorText {
+  font-size: 1.1rem;
+  color: #e53935;
+  font-weight: 400;
+}
+
+/* ── Header ── */
+.rentingOrdersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.rentingOrdersTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 4px;
+}
+.rentingOrdersSubtitle {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+/* ── No renting orders card ── */
+.noRentingOrdersCard {
   background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  min-width: 700px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  border: 1px solid #2222220f;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  gap: 16px;
+}
+.noOrdersIcon {
+  font-size: 3.5rem;
+  color: #ccc;
+}
+.noRentingOrdersCard h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+.noRentingOrdersCard p {
+  font-size: 0.95rem;
+  color: #777;
+  margin: 0 0 8px;
+}
+.rentNowBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background-color: #111;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.rentNowBtn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
 }
 
-/* Order Image */
-.order-card-image {
-  flex: 0 0 150px;
-  margin-right: 20px;
+/* ── Renting orders list & card ── */
+.rentingOrdersList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rentingOrderCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #2222220f;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  padding: 24px 30px;
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.rentingOrderCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
 }
 
-.order-card-image img {
-  width: 150px;
-  height: 150px;
+/* ── Left Image Column ── */
+.rentingOrderImageContainer {
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #2222220f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+.rentingOrderImage {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+.rentingOrderCard:hover .rentingOrderImage {
+  transform: scale(1.05);
 }
 
-/* Order Content */
-.order-card-content {
+/* ── Right Content Column ── */
+.rentingOrderCardContent {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 16px;
 }
 
-/* Order Info */
-.order-info p {
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-/* Order Buttons */
-.order-card-buttons {
-  margin-top: 10px;
-}
-
-.order-button, .order-button-fine {
-  padding: 8px 16px;
-  margin-right: 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.4s ease;
-
-}
-
-.order-button:hover, .order-button-fine:hover {
-  background-color: #000000;
-  color: white;
-}
-
-
-.handleUpdate-button, .handleUpdateCancel-button {
-  padding: 8px 16px;
-  margin-right: 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.4s ease;
-
-}
-
-.handleUpdate-button:hover, .handleUpdateCancel-button:hover {
-  background-color: #000000;
-  color: white;
-}
-
-/* Payment Container */
-
-.payment-container {
+/* Header Row */
+.rentingOrderHeaderRow {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
-  font-family: 'Poppins', sans-serif;
+  border-bottom: 1px solid #2222220f;
+  padding-bottom: 12px;
 }
-
-.payment-title {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #000000;
-}
-
-.payment-form {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 350px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-
-.form-group {
+.rentingOrderIdGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  gap: 2px;
+}
+.rentingOrderIdLabel {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.rentingOrderIdValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222;
+  font-family: ui-monospace, SFMono-Regular, SF Pro Text, monospace;
 }
 
-.form-group label {
-  margin-bottom: 6px;
+/* Status Badges */
+.rentingOrderBadges {
+  display: flex;
+  gap: 10px;
+}
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.statusBadge i {
+  font-size: 0.95rem;
+}
+.returnStatusBadge.successful {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+.returnStatusBadge.pending {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+.returnStatusBadge.fine {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+/* Details Grid */
+.rentingOrderDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+.rentingDetailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rentingDetailItem.timeline {
+  grid-column: span 2;
+}
+.rentingDetailLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.rentingDetailValue {
+  font-size: 0.88rem;
+  color: #333;
+  font-weight: 500;
+}
+.rentingDetailValue.itemName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
+}
+.rentingDetailValue.returnRequestedDate {
+  color: #c62828;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-weight: 600;
 }
 
-.form-group input {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  outline: none;
-  transition: 0.3s;
-}
-
-
-.form-row {
+/* Timeline Indicator */
+.rentalTimeline {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
+  background: #fafafa;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #22222207;
+  width: fit-content;
 }
-
-.payment-button {
-  padding: 8px 16px;
-  width: 100%;
-  background-color: white;
-  color: black;
-  border: 1px solid;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.4s ease;
+.timelinePoint {
+  display: flex;
+  flex-direction: column;
 }
-
-.payment-button:hover {
-  background-color: #000000;
-  color: white;
+.dateLabel {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: #aaa;
+  font-weight: 600;
 }
-
-.payment-footer {
-  padding: 20px;
-  margin-left: 100px;
-  font-size: 14px;
+.dateValue {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #444;
+}
+.timelineArrow {
+  font-size: 1.1rem;
   color: #888;
 }
 
-.fine-pay{
-  color: red;
+/* Footer Row */
+.rentingOrderFooterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid #22222207;
+}
+.rentingPriceSection {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.priceDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.priceLabel {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 500;
+}
+.priceValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
 }
 
+/* Fine Notification Inside Footer */
+.fineDetailCard {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+.fineIcon {
+  font-size: 1.1rem;
+  color: #c62828;
+}
+.fineInfo {
+  display: flex;
+  flex-direction: column;
+}
+.fineLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #c62828;
+  text-transform: uppercase;
+}
+.fineValue {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c62828;
+}
+
+/* Action Buttons */
+.rentingOrderButtons {
+  display: flex;
+  gap: 10px;
+}
+.rentingActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+}
+.rentingActionBtn i {
+  font-size: 1rem;
+}
+.rentingActionBtn.secondary {
+  background-color: #fff;
+  border: 1px solid #2222222a;
+  color: #333;
+}
+.rentingActionBtn.secondary:hover {
+  background-color: #f5f5f7;
+  transform: translateY(-1px);
+}
+.rentingActionBtn.primary.danger {
+  background-color: #c62828;
+  color: #fff;
+}
+.rentingActionBtn.primary.danger:hover {
+  background-color: #b71c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
+}
+
+/* ── Chakra Custom Modals ── */
+.modalContentCustom {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+  padding: 8px 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+.modalHeaderCustom {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid #2222220f;
+}
+.modalHeaderCustom h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 4px;
+}
+.modalHeaderCustom p {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+.modalCloseBtnCustom {
+  top: 18px !important;
+  right: 18px !important;
+}
+.modalFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.modalFormGroup label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.modalInputCustom {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #2222221f;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+  background-color: #fff;
+  color: #333;
+}
+.modalInputCustom:focus {
+  border-color: #111;
+}
+.modalFooterCustom {
+  border-top: 1px solid #2222220f;
+  padding: 16px 24px 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  width: 100%;
+}
+.modalActionBtnCustom {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.modalActionBtnCustom.primary {
+  background-color: #111;
+  color: #fff;
+}
+.modalActionBtnCustom.primary:hover {
+  background-color: #333;
+}
+.modalActionBtnCustom.secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+.modalActionBtnCustom.secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* Payment Modal Specifics */
+.paymentContainerCustom {
+  width: 100%;
+}
+.paymentFormCustom {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+.formRowCustom {
+  display: flex;
+  gap: 12px;
+}
+.fineDisplayCustom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 6px;
+}
+.fineDisplayLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c62828;
+  text-transform: uppercase;
+}
+.fineDisplayAmount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c62828;
+}
+.paymentBtnCustom {
+  width: 100%;
+  padding: 12px;
+  background-color: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-top: 6px;
+}
+.paymentBtnCustom:hover {
+  background-color: #333;
+  transform: translateY(-1px);
+}
+.paymentBtnCustom:active {
+  transform: translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .myRentingOrders {
+    margin-left: 0;
+    padding: 80px 20px 40px;
+  }
+  .rentingOrderCard {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 20px;
+  }
+  .rentingOrderImageContainer {
+    width: 100%;
+    height: 200px;
+  }
+  .rentingOrderHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .rentingOrderDetailsGrid {
+    grid-template-columns: 1fr;
+  }
+  .rentingDetailItem.timeline {
+    grid-column: span 1;
+  }
+  .rentalTimeline {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .rentingOrderFooterRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .rentingPriceSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .fineDetailCard {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+  }
+  .rentingOrderButtons {
+    width: 100%;
+    flex-direction: column;
+  }
+  .rentingActionBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

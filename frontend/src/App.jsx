@@ -20,11 +20,13 @@ import ViewSingleItem from "./Pages/Rentings/ViewSingleItem.jsx";
 import ProductCheckout from "./Pages/ProductCheckout/ProductCheckout.jsx";
 import RentingStore from "./Pages/Rentings/RentingStore.jsx";
 import ViewMyOrders from "./Pages/Profile/ViewMyOrders.jsx";
+import Navbar from "../Components/Navbar/Navbar";
 
 function App() {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
