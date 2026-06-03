@@ -39,7 +39,7 @@ server.use("/api/RentingOrderDetails", rentingOrderDetailsRoute);
 connectDB();
 
 server.get("/", (c, s) => {
-  s.send("API WORKING");
+  s.send("GoCeylon API Working");
 });
 
 server.listen(PORT, () => log(`Server is running on http://localhost:${PORT}`));
