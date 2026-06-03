@@ -1,0 +1,176 @@
+/* ── About page main content ── */
+.aboutMainContent {
+  margin-left: 0;
+  padding: 100px 40px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #f5f5f7;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.aboutHero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+.aboutHero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.aboutHeroSubtitle {
+  font-size: 1.1rem;
+  color: #555555;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Divider ── */
+.aboutDivider {
+  height: 1px;
+  background-color: #e0e0e0;
+  border: none;
+  margin: 0;
+}
+
+/* ── Section ── */
+.aboutSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aboutSection h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.aboutSection p {
+  font-size: 1rem;
+  color: #444444;
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* ── Values Grid ── */
+.aboutValuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.aboutValueCard {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.aboutValueCard:hover {
+  transform: translateY(-4px);
+  border-color: #c8c8c8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.aboutValueCard i {
+  font-size: 2rem;
+  color: #000000;
+}
+
+.aboutValueCard h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+}
+
+.aboutValueCard p {
+  font-size: 0.88rem;
+  color: #666666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Contact bar ── */
+.aboutContact {
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.aboutContactInfo h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.aboutContactInfo p {
+  font-size: 0.95rem;
+  color: #cccccc;
+  margin: 0;
+}
+
+.aboutContactBtn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.aboutContactBtn:hover {
+  background-color: #e0e0e0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .aboutMainContent {
+    padding: 80px 20px 40px;
+  }
+
+  .aboutHero h1 {
+    font-size: 2rem;
+  }
+
+  .aboutValuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutContact {
+    flex-direction: column;
+    text-align: center;
+  }
+}

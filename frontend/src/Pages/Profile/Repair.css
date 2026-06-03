@@ -1,104 +1,168 @@
-/* Container */
-.create-repair-container {
-  max-width: 600px;
-  margin: 50px auto;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Heading */
-.create-repair-heading {
-  font-size: 28px;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* Description */
-.create-repair-description {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-/* Form Container */
-.create-repair-form-container {
+/* ── Repair main content ── */
+.repairMainContent {
+  margin-left: 280px;
+  padding: 100px 40px 60px;
+  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  background-color: #f5f5f7;
 }
 
-/* Labels */
-.create-repair-form-container label {
+/* ── Header ── */
+.repairHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.repairHeader h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.repairSubtitle {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0;
+}
+
+/* ── Form Card ── */
+.repairCard {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: border-color 0.2s ease;
+}
+
+.repairCard:hover {
+  border-color: #d0d0d0;
+}
+
+.repairCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Input Wrappers ── */
+.repairInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.repairLabel {
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-top: 15px;
-  display: block;
-  color: #444;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Inputs */
-.create-repair-form-container input {
+.repairInputInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.repairInputIcon {
+  position: absolute;
+  left: 14px;
+  color: #999999;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.repairInput {
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s;
+  padding: 12px 14px 12px 42px;
+  font-size: 0.95rem;
+  color: #000000;
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.create-repair-form-container input:focus {
+.repairInput:focus {
+  background-color: #ffffff;
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
   outline: none;
-  border-color: black;
-  background-color: #fff;
 }
 
-/* Submit Button Container */
-.create-repair-button {
-  margin-top: 25px;
-  text-align: center;
+.repairInput::placeholder {
+  color: #b3b3b3;
 }
 
-/* Submit Button */
-.rep-submit-button {
-  background-color: white;
-  color: black;
-  padding: 8px 28px;
-  font-size: 16px;
-  font-weight: 400;
-  border: none;
-  border-radius: 28px;
-  cursor: pointer;
-  border: 1px solid black;
-  transition: all 0.3s ease;
+/* Textarea specifically */
+.repairTextarea {
+  min-height: 120px;
+  resize: vertical;
+  padding-left: 42px; /* space for icon */
+  line-height: 1.5;
 }
 
-.rep-submit-button:hover {
+/* Keep the icon aligned to the top-left of the textarea */
+.repairTextareaIcon {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: #999999;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* ── Submit button ── */
+.repairSubmitBtn {
   background-color: #000000;
-  color: #fff;
+  color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
-/* Note */
-.create-repair-note {
-  font-size: 12px;
-  color: #999;
-  margin-top: 25px;
+.repairSubmitBtn:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.repairSubmitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Note ── */
+.repairNote {
+  font-size: 0.8rem;
+  color: #999999;
   text-align: center;
-  font-style: italic;
+  margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .create-repair-container {
-    padding: 20px;
-  }
-
-  .rep-submit-button {
-    width: 100%;
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .repairMainContent {
+    margin-left: 0;
+    padding: 80px 20px 40px;
   }
 }

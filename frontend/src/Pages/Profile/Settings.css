@@ -1,75 +1,326 @@
-.settingsContainer {
-  padding: 40px;
+/* ── Settings main content ── */
+.settingsMainContent {
+  margin-left: 280px;
+  padding: 100px 40px 60px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  background-color: #f5f5f7;
+}
+
+/* ── Header ── */
+.settingsHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settingsBackBtn {
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
   width: fit-content;
 }
 
-.titleArea {
-  margin: auto;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.settingsBackBtn:hover {
+  color: #000;
+  transform: translateX(-4px);
 }
 
-.title {
-  text-align: center;
-  font-size: 28px;
+.settingsBackBtn i {
+  font-size: 1.1rem;
+}
+
+.settingsHeaderTitle h1 {
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #333;
-  margin-bottom: 30px;
+  color: #000000;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
 }
 
-.formGroup {
-  margin-bottom: 20px;
+.settingsSubtitle {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0;
 }
 
-.formGroup label {
-  display: block;
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 8px;
+/* ── Grid ── */
+.settingsGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: start;
 }
 
-.formGroup input {
-  width: 400px;
-  padding: 12px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #fdfdfd;
-  transition: border-color 0.3s ease;
+/* ── Cards ── */
+.settingsCard {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: border-color 0.2s ease;
 }
 
-.formGroup input:focus {
-  border-color: black;
+.settingsCard:hover {
+  border-color: #d0d0d0;
+}
+
+.settingsCardHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 4px;
+}
+
+.settingsCardHeader p {
+  font-size: 0.85rem;
+  color: #666666;
+  margin: 0;
+}
+
+.settingsCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Inputs ── */
+.settingsInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settingsLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settingsInputInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.settingsInputIcon {
+  position: absolute;
+  left: 14px;
+  color: #999999;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.settingsInput {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  font-size: 0.95rem;
+  color: #000000;
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.settingsInput:focus {
+  background-color: #ffffff;
+  border-color: #000000;
+  box-shadow: 0 0 0 1px #000000;
   outline: none;
 }
 
-.buttonContainer {
-  text-align: center;
-  margin-top: 30px;
+.settingsInput::placeholder {
+  color: #b3b3b3;
 }
 
-.updateUserDetailsButton {
-  background-color: white;
-  color: black;
-  padding: 8px 28px;
-  font-size: 16px;
-  border: none;
-  border-radius: 28px;
+/* ── Buttons ── */
+.settingsCardFooter {
+  margin-top: 10px;
+}
+
+.settingsSubmitBtn {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
-  border: 1px solid black;
-  transition: all 0.3s ease;
+  width: 100%;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.updateUserDetailsButton:hover {
-  background-color: black;
-  color: white;
+.settingsSubmitBtn:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
 }
 
-.loadingMessage {
-  font-size: 18px;
-  text-align: center;
-  margin-top: 100px;
-  color: #777;
+.settingsSubmitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Toggle switches ── */
+.preferenceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.preferenceRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.preferenceInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 16px;
+}
+
+.preferenceTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000000;
+}
+
+.preferenceDesc {
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+.preferenceSwitch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.preferenceSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.preferenceSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5e5e5;
+  border-radius: 24px;
+  transition: background-color 0.2s ease;
+}
+
+.preferenceSlider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.preferenceSwitch input:checked + .preferenceSlider {
+  background-color: #000000;
+}
+
+.preferenceSwitch input:checked + .preferenceSlider::before {
+  transform: translateX(22px);
+}
+
+/* ── Status badge ── */
+.statusBadgeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.statusInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statusTier {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.statusDate {
+  font-size: 0.8rem;
+  color: #666666;
+}
+
+.statusIndicator {
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Loading Wrapper ── */
+.settingsLoadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+  background-color: #f5f5f7;
+  width: 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .settingsMainContent {
+    margin-left: 0;
+    padding: 80px 20px 40px;
+  }
 }

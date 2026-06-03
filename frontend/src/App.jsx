@@ -20,6 +20,7 @@ import ViewSingleItem from "./Pages/Rentings/ViewSingleItem.jsx";
 import ProductCheckout from "./Pages/ProductCheckout/ProductCheckout.jsx";
 import RentingStore from "./Pages/Rentings/RentingStore.jsx";
 import ViewMyOrders from "./Pages/Profile/ViewMyOrders.jsx";
+import About from "./Pages/About/About.jsx";
 import Navbar from "../Components/Navbar/Navbar";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/viewSingleItem/:id" element={<ViewSingleItem />} />
           <Route path="/checkout/:id" element={<ProductCheckout />} />
           <Route path="/rentingStore" element={<RentingStore />} />
+          <Route path="/about" element={<About />} />
           <Route path="/viewMyOrders" element={<ViewMyOrders />} />
         </Routes>
       </Router>
